@@ -10,6 +10,9 @@ CFLAGS = -Wall -Wextra -Werror
 HEADERS = \
 
 SRCS_LIB = \
+	./lib/Vector.hpp \
+	./lib/Map.hpp \
+	./lib/Stack.hpp \
 
 SRCS_CT = 
 
