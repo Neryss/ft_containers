@@ -16,8 +16,22 @@ namespace ft
 		random_access_iterator(const random_access_iterator &other) : _it(other._it){};
 		~random_access_iterator();
 
-		bool operator==(const random_access_iterator &other){return _it == other._it};
-		bool operator!=(const random_access_iterator &other){return _it != other._it};
+		random_access_iterator	&operator++() {_it++; return (*this);};
+		random_access_iterator	&operator--() {_it--; return (*this);};
+		random_access_iterator	&operator++(int) {random_access_iterator tmp(*this); ++_it; return (tmp);};
+		random_access_iterator	&operator--(int) {random_access_iterator tmp(*this); --_it; return (tmp);};
+		random_access_iterator	operator+(difference_type n) const { return random_access_iterator<T>(_it + n);};
+		difference_type			operator+(const random_access_iterator &other) {return _it + other._it;};
+		random_access_iterator	operator-(difference_type n) const { return random_access_iterator<T>(_it - n);};
+		difference_type			operator-(const random_access_iterator &other) {return _it + other._it;};
+
+		// Comparaison operators
+		bool operator==(const random_access_iterator &other) {return _it == other._it;};
+		bool operator!=(const random_access_iterator &other) {return _it != other._it;};
+		bool operator<(const random_access_iterator &other) {return _it < other._it;};
+		bool operator<=(const random_access_iterator &other) {return _it <= other._it;};
+		bool operator>(const random_access_iterator &other) {return _it > other._it;};
+		bool operator>=(const random_access_iterator &other) {return _it >= other._it;};
 	private:
 		pointer _it;
 	};
