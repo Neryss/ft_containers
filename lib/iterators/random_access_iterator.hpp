@@ -11,6 +11,7 @@ namespace ft
 		typedef T *pointer;
 		typedef T &reference;
 		typedef ptrdiff_t difference_type;
+		typedef std::random_access_iterator_tag iterator_category;
 
 		random_access_iterator() : _it(NULL) {};
 		random_access_iterator(pointer ptr) : _it(ptr) {};
