@@ -11,11 +11,16 @@ namespace ft
 		typedef T *pointer;
 		typedef T &reference;
 		typedef ptrdiff_t difference_type;
-		random_access_iterator() : _it(NULL){};
-		random_access_iterator(pointer ptr) : _it(ptr){};
-		random_access_iterator(const random_access_iterator &other) : _it(other._it){};
-		~random_access_iterator();
 
+		random_access_iterator() : _it(NULL) {};
+		random_access_iterator(pointer ptr) : _it(ptr) {};
+		random_access_iterator(const random_access_iterator &other) : _it(other._it) {};
+		~random_access_iterator() {};
+
+		pointer operator->() const { return _it ;};
+		reference operator*() const { return *_it ;};
+
+		// Arit operators
 		random_access_iterator	&operator++() {_it++; return (*this);};
 		random_access_iterator	&operator--() {_it--; return (*this);};
 		random_access_iterator	&operator++(int) {random_access_iterator tmp(*this); ++_it; return (tmp);};
@@ -32,6 +37,8 @@ namespace ft
 		bool operator<=(const random_access_iterator &other) {return _it <= other._it;};
 		bool operator>(const random_access_iterator &other) {return _it > other._it;};
 		bool operator>=(const random_access_iterator &other) {return _it >= other._it;};
+
+		reference operator[](difference_type n) const { return _it[n];};
 	private:
 		pointer _it;
 	};
