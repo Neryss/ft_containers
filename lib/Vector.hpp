@@ -7,8 +7,8 @@ namespace ft {
 	class Vector {
 		typedef T				value_type;
 		typedef Alloc			allocator_type;
-		typedef size_type		size_t;
-		typedef difference_type ptrdiff_t;
+		typedef size_t 			size_type;
+		typedef ptrdiff_t		difference_type;
 		typedef typename	allocator_type::reference &reference;
 		typedef typename	allocator_type::const_reference &const_reference;
 		typedef typename	allocator_type::pointer pointer;
