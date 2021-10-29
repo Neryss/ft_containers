@@ -1,26 +1,47 @@
+_END=\033[0m
+_BOLD=\033[1m
+_UNDER=\033[4m
+_REV=\033[7m
+
+_DEFAULT=\033[39m
+_RED=\033[31m
+_GREEN=\033[32m
+_YELLOW=\033[33m
+_BLUE=\033[34m
+_MAGENTA=\033[35m
+_CYAN=\033[36m
+_LIGHTGRAY=\033[37m
+_DARKGRAY=\033[90m
+_LIGHTRED=\033[91m
+_LIGHTGREEN=\033[92m
+_LIGHTYELLOW=\033[93m
+_LIGHTBLUE=\033[94m
+_LIGHTMAGENTA=\033[95m
+_LIGHTCYAN=\033[96m
+_WHITE=\033[97m
+
 NAME = containers
 
 CC = clang++
-MAKE = make --no-print-directory
+MAKE = make
 
 CFLAGS = -Wall -Wextra -Werror
+# CFLAGS += -O3 -fno-builtin
 # CFLAGS += -g
 # CFLAGS += -fsanitize=address
 
-HEADERS = \
+CT_SRC = \
+	./main.cpp
 
-SRCS_LIB = \
-	./lib/Vector.hpp \
-	./lib/Map.hpp \
-	./lib/Stack.hpp \
+CT_LIB = \
+	./lib/vector.hpp
 
-SRCS_CT = 
+SRCS = \
+	$(CT_SRC) \
 
-SRCS = $(SRCS_LIB) $(SRCS_CT)
+OBJS = $(SRCS:%.cpp=%.o)
 
-OBJS = $(SRCS:%.c=%.o)
-
-%.o: %.c $(HEADERS) Makefile
+%.o: %.cpp Makefile
 	@printf "[ $(_GREEN)$(_BOLD)compiling$(_END) ] $(_BLUE)$(_BOLD)$<$(_END)\n"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
@@ -36,8 +57,6 @@ clean:
 	@$(RM) $(OBJS)
 
 fclean: clean
-	@printf "[ $(_RED)$(_BOLD)removing$(_END) ] $(_BLUE)$(_BOLD)debug files$(_END)\n"
-	@find . \( -name "*.dSYM" -o -name "*.gcda" -o -name "*.gcno" -o -name "*.gcov" \) -delete
 	@printf "[ $(_RED)$(_BOLD)removing$(_END) ] $(_BLUE)$(_BOLD)$(NAME)$(_END)\n"
 	@$(RM) $(NAME)
 
@@ -50,3 +69,5 @@ run: all
 
 norm:
 	@norminette
+
+.PHONY: all clean fclean re run norm
