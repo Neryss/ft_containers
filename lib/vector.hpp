@@ -22,6 +22,18 @@ namespace ft {
 
 			//ctors
 			explicit vector(const allocator_type &alloc = allocator_type()) : _size(0), _volume(0), _allocator(alloc), _tab(NULL) {};
+			explicit vector(size_type n, const value_type &val = value_type(), const allocator_type &alloc = allocator_type()) : _size(n), _volume(n), _allocator(alloc), _tab(NULL)
+			{
+				_tab = _allocator.allocate(_size);
+				for (size_type i = 0; i < _size; i++)
+					_allocator.construct(&_tab[i], val);
+			};
+			~vector() {_allocator.deallocate(_tab, _size);};
+			reference operator[] (size_type n)
+			{
+				reference idx = *(_tab + n);
+				return idx;
+			};
 		private:
 			size_type		_size;
 			size_type		_volume;
