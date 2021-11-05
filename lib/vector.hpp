@@ -1,6 +1,9 @@
 #pragma once
+
 #include <iterator>
-#include "../utils/is_integral.hpp"
+#include <memory>
+#include "./utils/is_integral.hpp"
+#include "./utils/compare.hpp"
 #include "./iterators/iterator_traits.hpp"
 #include "./iterators/random_access_iterator.hpp"
 #include "./iterators/reverse_iterator.hpp"
@@ -19,6 +22,8 @@ namespace ft {
 
 			typedef ft::random_access_iterator<value_type> iterator;
 			typedef ft::random_access_iterator<const value_type> const_iterator;
+			typedef ft::reverse_iterator<iterator> reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator> const_reverse_iterator;
 
 			typedef typename ft::iterator_traits<iterator>::difference_type difference_type; //same as ptrdiff
 
@@ -46,7 +51,7 @@ namespace ft {
 				_volume = o._volume;
 				_tab = _allocator.allocate(_size);
 				for (size_type i = 0; i < _size; i++)
-					_allocator.construct(&_tab[i], x._tab[i]);
+					_allocator.construct(&_tab[i], o._tab[i]);
 			}
 
 			~vector() {_allocator.deallocate(_tab, _size);};
@@ -57,12 +62,6 @@ namespace ft {
 				swap(tmp);
 				return (*this);
 			}
-
-			reference operator[] (size_type n)
-			{
-				reference idx = *(_tab + n);
-				return idx;
-			};
 
 			//Iterators
 			iterator begin() { return iterator(_tab); };
