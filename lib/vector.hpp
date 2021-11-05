@@ -248,7 +248,6 @@ namespace ft {
 				_size -= n;
 				return begin() + dist;
 			}
-
 			void swap(vector &x)
 			{
 				size_type		sizeTemp = x._size;
@@ -279,9 +278,7 @@ namespace ft {
 				allocator_type ret(_allocator);
 				return ret;
 			}
-
 		private:
-
 			void	_reAlloc()
 			{
 				if (_volume == 0)
