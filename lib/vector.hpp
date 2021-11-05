@@ -28,6 +28,8 @@ namespace ft {
 				for (size_type i = 0; i < _size; i++)
 					_allocator.construct(&_tab[i], val);
 			};
+			template <class InputIterator>
+			vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type(), typename)
 			~vector() {_allocator.deallocate(_tab, _size);};
 			reference operator[] (size_type n)
 			{
