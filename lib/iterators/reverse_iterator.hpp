@@ -15,7 +15,6 @@ namespace ft
 			typedef typename iterator_traits<Iterator>::difference_type difference_type;
 			typedef typename iterator_traits<Iterator>::iterator_category iterator_category;
 
-			//CONSTRUCTORS
 			reverse_iterator() : _baseIt(){}
 			explicit reverse_iterator(iterator_type it) : _baseIt(it){}
 			template <class Iter>
@@ -23,7 +22,6 @@ namespace ft
 
 			iterator_type base() const { return _baseIt; }
 
-			//DEREFERENCED OPERATORS
 			reference operator*() const 
 			{
 				iterator_type tmp = _baseIt;
@@ -34,10 +32,8 @@ namespace ft
 			{
 				return &(operator*());
 			}
-			//ARITHMETIC OPERATORS
 			reverse_iterator operator+ (difference_type n) const { return reverse_iterator(_baseIt - n); }
 			reverse_iterator operator- (difference_type n) const { return reverse_iterator(_baseIt + n); }
-			//INCREMENT DECREMENT OPERATORS
 			reverse_iterator &operator++()
 			{
 				--_baseIt;
@@ -71,14 +67,12 @@ namespace ft
 				_baseIt += n;
 				return *this;
 			}
-			//ACCESS OPERATOR
 			reference operator[](difference_type n) const { return *(_baseIt - n - 1); }
 
 		private:
 			iterator_type _baseIt;
 	};
 
-	//NON MEMBER FUNCTIONS
 	template <class Iterator>
 	bool operator==(const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs)
 	{

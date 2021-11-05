@@ -74,7 +74,7 @@ namespace ft {
 			reverse_iterator rend() { return reverse_iterator(begin()); }
 			const_reverse_iterator rend() const { return const_reverse_iterator(begin()); }
 			
-			//----------CAPACITY--------
+			//Capa
 			size_type size() const { return _size; }
 			size_type max_size() const { return _allocator.max_size(); }
 			size_type capacity() const { return _volume; }
@@ -138,7 +138,7 @@ namespace ft {
 			reference back() { return _tab[_size - 1]; }
 			const_reference back() const { return _tab[_size - 1]; }
 
-			//----------MODIFIERS--------
+			//Modif
 			template <class InputIterator>
 			void assign(InputIterator first, InputIterator last,
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = NULL)
