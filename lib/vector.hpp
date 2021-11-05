@@ -115,7 +115,7 @@ namespace ft {
 				}
 			}
 
-			//----------ELEMENT ACCESS--------
+			//access operators
 			reference operator[] (size_type n)
 			{
 				reference idx = *(_tab + n);
@@ -274,7 +274,6 @@ namespace ft {
 				_size = 0;
 			}
 
-			//----------ALLOCATOR--------
 			allocator_type get_allocator() const
 			{
 				allocator_type ret(_allocator);
@@ -340,5 +339,4 @@ namespace ft {
 	{
 		x.swap(y);
 	}
-
 }
