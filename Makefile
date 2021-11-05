@@ -35,6 +35,9 @@ CT_SRC = \
 
 CT_LIB = \
 	./lib/vector.hpp
+	./lib/iterators/iterator_traits.hpp
+	./lib/iterators/random_access_iterator.hpp
+	./lib/utils/is_integral.hpp
 
 SRCS = \
 	$(CT_SRC) \

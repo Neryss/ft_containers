@@ -1,5 +1,6 @@
 #pragma once
 #include <iterator>
+#include "../utils/is_integral.hpp"
 #include "./iterators/iterator_traits.hpp"
 #include "./iterators/random_access_iterator.hpp"
 
@@ -29,8 +30,26 @@ namespace ft {
 					_allocator.construct(&_tab[i], val);
 			};
 			template <class InputIterator>
-			vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type(), typename)
+			vector(InputIterator first, InputIterator last, const allocator_type &alloc = allocator_type(),
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type * = NULL) : _size(0), _volume(0), _allocator(alloc), _tab(NULL)
+			{
+				_size = last - first;
+				_volume = _size;
+				_tab = _allocator.allocate(_size);
+				for (size_type i = 0; i < _size; i++)
+					_allocator.construct(&_tab[i], *(first + i));
+			}
+			vector(const vector &o) : _size(0)
+			{
+				_size = o._size;
+				_volume = o._volume;
+				_tab = _allocator.allocate(_size);
+				for (size_type i = 0; i < _size; i++)
+					_allocator.construct(&_tab[i], x._tab[i]);
+			}
+
 			~vector() {_allocator.deallocate(_tab, _size);};
+			
 			reference operator[] (size_type n)
 			{
 				reference idx = *(_tab + n);
