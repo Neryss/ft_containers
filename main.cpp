@@ -1,4 +1,5 @@
 #include "./lib/vector.hpp"
+#include "./lib/stack.hpp"
 #include <iostream>
 #include <vector>
 #include <string>
