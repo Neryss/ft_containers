@@ -2,6 +2,7 @@
 
 #include <iterator>
 #include <memory>
+#include <cmath>
 #include "./utils/is_integral.hpp"
 #include "./utils/compare.hpp"
 #include "./iterators/iterator_traits.hpp"
@@ -76,7 +77,10 @@ namespace ft {
 			
 			//Capa
 			size_type size() const { return _size; }
-			size_type max_size() const { return _allocator.max_size(); }
+			size_type max_size() const { 
+				return std::min<size_type>(_allocator.max_size(),
+									std::numeric_limits<difference_type>::max());
+			}
 			size_type capacity() const { return _volume; }
 			bool empty() const { return _size == 0; }
 			void reserve(size_type n)
@@ -286,7 +290,6 @@ namespace ft {
 				else
 					reserve(_volume * 2);
 			}
-			
 			size_type		_size;
 			size_type		_volume;
 			allocator_type	_allocator;
