@@ -27,7 +27,7 @@ MAKE = make
 
 CFLAGS = -Wall -Wextra -Werror
 # CFLAGS += -O3 -fno-builtin
-# CFLAGS += -g
+CFLAGS += -g
 # CFLAGS += -fsanitize=address
 
 CT_SRC = \

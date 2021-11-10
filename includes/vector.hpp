@@ -3,6 +3,7 @@
 #include <iterator>
 #include <memory>
 #include <cmath>
+#include <algorithm>
 #include "./utils/is_integral.hpp"
 #include "./utils/compare.hpp"
 #include "./iterators/iterator_traits.hpp"
@@ -79,6 +80,7 @@ namespace ft
 
 		//Capa
 		size_type size() const { return _size; }
+
 		size_type max_size() const
 		{
 			return std::min<size_type>(_allocator.max_size(),
@@ -311,7 +313,7 @@ namespace ft
 	template <class T, class Alloc>
 	bool operator!=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
 	{
-		return (lhs != rhs);
+		return !(lhs == rhs);
 	}
 
 	template <class T, class Alloc>
@@ -321,52 +323,21 @@ namespace ft
 	}
 
 	template <class T, class Alloc>
-	bool operator<=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
-	{
-		return (lhs <= rhs);
-	}
-
-	template <class T, class Alloc>
 	bool operator>(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
 	{
-		return (lhs > rhs);
+		return (rhs < lhs);
+	}
+
+	template <class T, class Alloc>
+	bool operator<=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+	{
+		return !(rhs < lhs);
 	}
 
 	template <class T, class Alloc>
 	bool operator>=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
 	{
-		return (lhs >= rhs);
-	}
-
-	template <class T, class Alloc>
-	void swap(vector<T, Alloc> &x, vector<T, Alloc> &y)
-	{
-		x.swap(y);
-	}
-	template <class T, class Alloc>
-	bool operator>=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
-	{
-		return (lhs >= rhs);
-	}
-	template <class T, class Alloc>
-	void swap(vector<T, Alloc> &x, vector<T, Alloc> &y)
-	{
-		x.swap(y);
-	}
-	template <class T, class Alloc>
-	bool operator>=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
-	{
-		return (lhs >= rhs);
-	}
-	template <class T, class Alloc>
-	void swap(vector<T, Alloc> &x, vector<T, Alloc> &y)
-	{
-		x.swap(y);
-	}
-	template <class T, class Alloc>
-	bool operator>=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
-	{
-		return (lhs >= rhs);
+		return !(rhs > lhs);
 	}
 
 	template <class T, class Alloc>
