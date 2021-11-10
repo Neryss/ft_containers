@@ -347,28 +347,28 @@ namespace ft
 	bool operator>=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
 	{
 		return (lhs >= rhs);
-		/ template <class T, class Alloc>
-			void swap(vector<T, Alloc> & x, vector<T, Alloc> & y)
-		{
-			x.swap(y);
-		}
 	}
 	template <class T, class Alloc>
-	bool operator>=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+	void swap(vector<T, Alloc> &x, vector<T, Alloc> &y)
 	{
-		return (lhs >= rhs);
-		/ template <class T, class Alloc>
-			void swap(vector<T, Alloc> & x, vector<T, Alloc> & y)
-		{
-			x.swap(y);
-		}
+		x.swap(y);
 	}
 	template <class T, class Alloc>
 	bool operator>=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
 	{
 		return (lhs >= rhs);
 	}
-	
+	template <class T, class Alloc>
+	void swap(vector<T, Alloc> &x, vector<T, Alloc> &y)
+	{
+		x.swap(y);
+	}
+	template <class T, class Alloc>
+	bool operator>=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+	{
+		return (lhs >= rhs);
+	}
+
 	template <class T, class Alloc>
 	void swap(vector<T, Alloc> &x, vector<T, Alloc> &y)
 	{
