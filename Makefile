@@ -34,16 +34,16 @@ CT_SRC = \
 	./main.cpp
 
 CT_LIB = \
-	./lib/vector.hpp \
-	./lib/stack.hpp \
-	./lib/map.hpp \
-	./lib/iterators/iterator_traits.hpp \
-	./lib/iterators/random_access_iterator.hpp \
-	./lib/iterators/reverse_iterator.hpp \
-	./lib/iterators/rb_iterator.hpp \
-	./lib/utils/is_integral.hpp \
-	./lib/utils/compare.hpp \
-	./lib/utils/rb_tree.hpp \
+	./includes/cheh.hpp \
+	./includes/stack.hpp \
+	./includes/map.hpp \
+	./includes/iterators/iterator_traits.hpp \
+	./includes/iterators/random_access_iterator.hpp \
+	./includes/iterators/reverse_iterator.hpp \
+	./includes/iterators/rb_iterator.hpp \
+	./includes/utils/is_integral.hpp \
+	./includes/utils/compare.hpp \
+	./includes/utils/rb_tree.hpp \
 
 SRCS = \
 	$(CT_SRC) \

@@ -1,5 +1,5 @@
-#include "./lib/vector.hpp"
-#include "./lib/stack.hpp"
+#include "./includes/vector.hpp"
+#include "./includes/stack.hpp"
 #include <iostream>
 #include <vector>
 #include <string>
