@@ -206,10 +206,6 @@ namespace ft
 
 		allocator_type get_allocator() const { return _alloc; }
 
-		/*void print()
-			{
-				_tree.print();
-			}*/
 	private:
 		ft::rb_tree<value_type, value_compare> _tree;
 		allocator_type _alloc;
@@ -228,7 +224,7 @@ namespace ft
 	template <class Key, class T, class Compare, class Alloc>
 	bool operator!=(const ft::map<Key, T, Compare, Alloc> &lhs, const ft::map<Key, T, Compare, Alloc> &rhs)
 	{
-		return (lhs != rhs);
+		return !(lhs == rhs);
 	}
 
 	template <class Key, class T, class Compare, class Alloc>
@@ -240,19 +236,19 @@ namespace ft
 	template <class Key, class T, class Compare, class Alloc>
 	bool operator<=(const ft::map<Key, T, Compare, Alloc> &lhs, const ft::map<Key, T, Compare, Alloc> &rhs)
 	{
-		return (lhs <= rhs);
+		return !(rhs < lhs);
 	}
 
 	template <class Key, class T, class Compare, class Alloc>
 	bool operator>(const ft::map<Key, T, Compare, Alloc> &lhs, const ft::map<Key, T, Compare, Alloc> &rhs)
 	{
-		return lhs > rhs;
+		return rhs < lhs;
 	}
 
 	template <class Key, class T, class Compare, class Alloc>
 	bool operator>=(const ft::map<Key, T, Compare, Alloc> &lhs, const ft::map<Key, T, Compare, Alloc> &rhs)
 	{
-		return (lhs >= rhs);
+		return !(lhs < rhs);
 	}
 
 	template <class Key, class T, class Compare, class Alloc>

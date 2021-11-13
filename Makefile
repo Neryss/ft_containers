@@ -26,8 +26,8 @@ HEADERS = \
 SRCS = \
 	./main.cpp \
 	./tests/stack.cpp \
-	# ./tests/vector.cpp \
-	# ./tests/map.cpp \
+	./tests/vector.cpp \
+	./tests/map.cpp \
 
 FT_OBJS = $(SRCS:%.cpp=%_ft.o)
 STL_OBJS = $(SRCS:%.cpp=%_stl.o)

@@ -137,11 +137,10 @@ void vector_test()
 	}
 	// if (false)
 	{
-		// ft::vector<char> test(10, 'a');
-		ft::vector<char> test;
-		//BUG : crash if `ft::vector<char> test;`
+		ft::vector<char> test(10, 'a');
+		// ft::vector<char> test;
 		print_vector(test);
-		test.resize(15, 'e');
+		test.resize(25, 'e');
 		test.reserve(50);
 		std::cout << test.capacity() << ' ' << test.empty() << ' ' << test.size() << ' ' << test.get_allocator().max_size() << ' ' << test.max_size() << std::endl;
 		test.push_back('b');
@@ -172,7 +171,7 @@ void vector_test()
 	{
 		ft::vector<int> test;
 		size_t last = -1;
-		for (size_t i = 0; i <= 15000000; i++)
+		for (size_t i = 0; i < 15000000; i++)
 		{
 			test.push_back(i);
 			if (last != test.capacity())

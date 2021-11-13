@@ -76,7 +76,6 @@ namespace ft
 		~rb_tree()
 		{
 			clear();
-			_alloc.destroy(_NIL);
 			_alloc.deallocate(_NIL, 1);
 		}
 
