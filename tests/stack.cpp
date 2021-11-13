@@ -52,12 +52,18 @@ void operators_stack()
 	bar2.push(5);
 	bar2.push(87);
 	bar2.push(-1);
-	if (foo2==bar2) std::cout << "foo and bar are equal\n";
-	if (foo2!=bar2) std::cout << "foo and bar are not equal\n";
-	if (foo2< bar2) std::cout << "foo is less than bar\n";
-	if (foo2> bar2) std::cout << "foo is greater than bar\n";
-	if (foo2<=bar2) std::cout << "foo is less than or equal to bar\n";
-	if (foo2>=bar2) std::cout << "foo is greater than or equal to bar\n";
+	if (foo2==bar2)
+		std::cout << "foo and bar are equal\n";
+	if (foo2!=bar2)
+		std::cout << "foo and bar are not equal\n";
+	if (foo2< bar2)
+		std::cout << "foo is less than bar\n";
+	if (foo2> bar2)
+		std::cout << "foo is greater than bar\n";
+	if (foo2<=bar2)
+		std::cout << "foo is less than or equal to bar\n";
+	if (foo2>=bar2)
+		std::cout << "foo is greater than or equal to bar\n";
 }
 
 void basic_stack()
@@ -78,8 +84,27 @@ void basic_stack()
 	std::cout << "stest size after pop : " << stest.empty() << std::endl;
 }
 
+void vstack()
+{
+	ft::stack<int, std::vector<int> > vstack;
+	std::cout << "size after construct : " << vstack.size() << std::endl;
+	std::cout << "vstack empty ? " << vstack.empty() << std::endl;
+	vstack.push(1);
+	vstack.push(2);
+	vstack.push(3);
+	std::cout << "vstack empty ? " << vstack.empty() << std::endl;
+	std::cout << "vstack size : " << vstack.size() << std::endl;
+	for (int i = 0; i < 3; i++)
+	{
+		std::cout << vstack.top() << std::endl;
+		vstack.pop();
+	}
+	std::cout << "vstack size after pop : " << vstack.empty() << std::endl;
+}
+
 void stack_test()
 {
 	operators_stack();
 	basic_stack();
+	vstack();
 }
