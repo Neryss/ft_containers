@@ -1,82 +1,73 @@
-_END=\033[0m
-_BOLD=\033[1m
-_UNDER=\033[4m
-_REV=\033[7m
-
-_DEFAULT=\033[39m
-_RED=\033[31m
-_GREEN=\033[32m
-_YELLOW=\033[33m
-_BLUE=\033[34m
-_MAGENTA=\033[35m
-_CYAN=\033[36m
-_LIGHTGRAY=\033[37m
-_DARKGRAY=\033[90m
-_LIGHTRED=\033[91m
-_LIGHTGREEN=\033[92m
-_LIGHTYELLOW=\033[93m
-_LIGHTBLUE=\033[94m
-_LIGHTMAGENTA=\033[95m
-_LIGHTCYAN=\033[96m
-_WHITE=\033[97m
-
 NAME = containers
 
 CC = clang++
-MAKE = make
+MAKE = make --no-print-directory
 
-CFLAGS = -Wall -Wextra -Werror
-# CFLAGS += -O3 -fno-builtin
-CFLAGS += -g
-# CFLAGS += -fsanitize=address
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+# CPPFLAGS += -g
+CPPFLAGS += -O3 -fno-builtin
+# CPPFLAGS += -fsanitize=address
 
-CT_SRC = \
-	./main.cpp
+INCLUDE = ./includes
 
-CT_LIB = \
-	./includes/cheh.hpp \
-	./includes/stack.hpp \
-	./includes/map.hpp \
-	./includes/iterators/iterator_traits.hpp \
-	./includes/iterators/random_access_iterator.hpp \
-	./includes/iterators/reverse_iterator.hpp \
-	./includes/iterators/rb_iterator.hpp \
-	./includes/utils/is_integral.hpp \
-	./includes/utils/compare.hpp \
-	./includes/utils/rb_tree.hpp \
+HEADERS = \
+	$(INCLUDE)/map.hpp \
+	$(INCLUDE)/stack.hpp \
+	$(INCLUDE)/vector.hpp \
+	$(INCLUDE)/iterators/random_access_iterator.hpp \
+	$(INCLUDE)/iterators/reverse_iterator.hpp \
+	$(INCLUDE)/iterators/rb_iterator.hpp \
+	$(INCLUDE)/iterators/iterator_traits.hpp \
+	$(INCLUDE)/utils/is_integral.hpp \
+	$(INCLUDE)/utils/compare.hpp \
+	$(INCLUDE)/utils/rb_tree.hpp \
+
 
 SRCS = \
-	$(CT_SRC) \
+	./main.cpp \
+	./tests/stack.cpp \
+	# ./tests/vector.cpp \
+	# ./tests/map.cpp \
 
-OBJS = $(SRCS:%.cpp=%.o)
+FT_OBJS = $(SRCS:%.cpp=%_ft.o)
+STL_OBJS = $(SRCS:%.cpp=%_stl.o)
 
-%.o: %.cpp Makefile
-	@printf "[ $(_GREEN)$(_BOLD)compiling$(_END) ] $(_BLUE)$(_BOLD)$<$(_END)\n"
-	@$(CC) $(CFLAGS) -c $< -o $@
+%_ft.o: %.cpp Makefile $(HEADERS)
+	$(CC) $(CPPFLAGS) -I$(INCLUDE) -c $< -o $@
 
-all: $(NAME)
+%_stl.o: %.cpp Makefile $(HEADERS)
+	$(CC) $(CPPFLAGS) -DSTL -I$(INCLUDE) -c $< -o $@
 
-$(NAME): $(OBJS)
-	@printf "[ $(_YELLOW)$(_BOLD)building$(_END) ] $(_BLUE)$(_BOLD)$(NAME)$(_END)\n"
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
-	@printf "[ $(_MAGENTA)$(_BOLD)done$(_END) ]\n"
+all: ft_$(NAME) stl_$(NAME)
+
+ft_$(NAME): $(FT_OBJS)
+	$(CC) $(CPPFLAGS) -o ft_$(NAME) $(FT_OBJS)
+
+stl_$(NAME): $(STL_OBJS)
+	$(CC) $(CPPFLAGS) -o stl_$(NAME) $(STL_OBJS)
 
 clean:
-	@printf "[ $(_RED)$(_BOLD)removing$(_END) ] $(_BLUE)$(_BOLD)objs$(_END)\n"
-	@$(RM) $(OBJS)
+	$(RM) $(FT_OBJS)
+	$(RM) $(STL_OBJS)
 
 fclean: clean
-	@printf "[ $(_RED)$(_BOLD)removing$(_END) ] $(_BLUE)$(_BOLD)$(NAME)$(_END)\n"
-	@$(RM) $(NAME)
+	$(RM) ft_$(NAME)
+	$(RM) stl_$(NAME)
+	$(RM) *.out
 
 re: fclean
-	@$(MAKE) all
+	$(MAKE) all
 
-run: all
-	@printf "[ $(_MAGENTA)$(_BOLD)running$(_END) ] $(_BLUE)$(_BOLD)$(NAME)...$(_END)\n"
-	@./$(NAME)
+test: all
+	$(MAKE) -j _test_all;
 
-norm:
-	@norminette
+_test_stl:
+	./stl_$(NAME) > stl_test.out
 
-.PHONY: all clean fclean re run norm
+_test_ft:
+	./ft_$(NAME) > ft_test.out
+
+_test_all:  _test_stl _test_ft
+	diff stl_test.out ft_test.out
+
+.PHONY: all clean fclean test bench
