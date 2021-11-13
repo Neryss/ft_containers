@@ -60,16 +60,26 @@ void operators_stack()
 	if (foo2>=bar2) std::cout << "foo is greater than or equal to bar\n";
 }
 
+void basic_stack()
+{
+	ft::stack<std::string> stest;
+	std::cout << "size after construct : " << stest.size() << std::endl;
+	std::cout << "stest empty ? " << stest.empty() << std::endl;
+	stest.push("salut");
+	stest.push("les");
+	stest.push("boys");
+	std::cout << "stest empty ? " << stest.empty() << std::endl;
+	std::cout << "stest size : " << stest.size() << std::endl;
+	for (int i = 0; i < 3; i++)
+	{
+		std::cout << stest.top() << std::endl;
+		stest.pop();
+	}
+	std::cout << "stest size after pop : " << stest.empty() << std::endl;
+}
+
 void stack_test()
 {
-	// ft::stack<int> itest;
-	// for (size_t i = 0; i < 0; i++)
-	// 	itest.push(i);
-	// ft::stack<char> ctest;
-	// for (size_t i = 0; i < 0; i++)
-	// 	ctest.push(i);
-	// ft::stack<std::string> stest;
-	// for (size_t i = 0; i < 0; i++)
-	// 	stest.push(itoa(i));
 	operators_stack();
+	basic_stack();
 }
